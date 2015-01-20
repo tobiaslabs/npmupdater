@@ -113,7 +113,7 @@ And it will give you back an object containing the list of changed files.
 ### `GET /module/{:moduleName}/{:sha} ->`
 
 	{
-		pulled: 'date the commit was added',
+		added: 'date the commit was added',
 		sha: 'the sha for this commit, equivalent to {:sha}',
 		pushed: '(optional) date the repo was pushed to npm at this version',
 		version: 'semver as found in the package.json of this commit',
