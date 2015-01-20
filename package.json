@@ -1,0 +1,26 @@
+{
+  "name": "npmupdater",
+  "version": "0.0.0",
+  "description": "A server thingy that monitors a user's modules and auto pushes them.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saibotsivad/npmupdater.git"
+  },
+  "keywords": [
+    "npm",
+    "github"
+  ],
+  "author": "saibotsivad",
+  "license": "VOL",
+  "bugs": {
+    "url": "https://github.com/saibotsivad/npmupdater/issues"
+  },
+  "devDependencies": {
+    "tape": "~3.4.0",
+    "uuidv4": "~0.3.0"
+  }
+}
