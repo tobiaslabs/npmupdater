@@ -161,43 +161,16 @@ And it will give you back an object containing the list of changed files.
 ### `GET /update/{:moduleName}/{:sha} ->`
 
 	{
-		started: 'date the process was started',
-		finished: 'date the process was finished',
-		result: 'status returned from npm after pushing',
-		log: 'the log string as given by npm on issuing push (for debugging, mostly)'
+		module: 'name of module, e.g. "ftp-core"',
+		repository: {
+			type: 'currently "git", maybe "svn" will be supported later',
+			url: 'url to the repo'
+		},
+		sha: 'commit sha to push to npm'
+		update: {
+			started: 'date the process was started',
+			finished: 'date the process was finished',
+			result: 'status returned from npm after pushing',
+			log: 'the log string as given by npm on issuing push (for debugging, mostly)'
+		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

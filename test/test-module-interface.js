@@ -71,14 +71,14 @@ test('an added module should be persisted', function(t) {
 			url: 'site.com/repo.git'
 		}
 	}
-	var modInterface = new ModuleInterface(database())
-	modInterface.putModule(inserted, function(err, module) {
+	var mod = new ModuleInterface(database())
+	mod.putModule(inserted, function(err, module) {
 		t.notOk(err, 'module should be inserted')
-		modInterface.getModule(inserted.name, function(err, module) {
+		mod.getModule(inserted.name, function(err, module) {
 			t.notOk(err, 'the module should have been inserted')
 			t.deepEqual(module.module, inserted)
 			t.ok(module.owned.first, 'it should have the first owned date added')
-			modInterface.getModuleList(function(modules) {
+			mod.getModuleList(function(modules) {
 				t.ok(modules, 'it should give you back the modules')
 				t.ok(Array.isArray(modules), 'it should be an array')
 				t.equal(1, modules.length, 'it should have one module')
@@ -98,10 +98,10 @@ test('deleting a module should return correct errors', function(t) {
 			url: 'site.com/repo.git'
 		}
 	}
-	var modInterface = new ModuleInterface(database())
-	modInterface.putModule(inserted, function(err, module) {
+	var mod = new ModuleInterface(database())
+	mod.putModule(inserted, function(err, module) {
 		t.notOk(err, 'module should be inserted')
-		modInterface.deleteModule(inserted.name, function(err) {
+		mod.deleteModule(inserted.name, function(err) {
 			t.notOk(err, 'deleting existing module should not throw error')
 			t.end()
 		})
@@ -117,14 +117,14 @@ test('deleting a module should persist the data change', function(t) {
 			url: 'site.com/repo.git'
 		}
 	}
-	var modInterface = new ModuleInterface(database())
-	modInterface.putModule(inserted, function(err, module) {
+	var mod = new ModuleInterface(database())
+	mod.putModule(inserted, function(err, module) {
 		t.notOk(err, 'module should be inserted')
-		modInterface.deleteModule(inserted.name, function(err) {
+		mod.deleteModule(inserted.name, function(err) {
 			t.notOk(err, 'deleting existing module should not throw error')
-			modInterface.getModule(inserted.name, function(err) {
+			mod.getModule(inserted.name, function(err) {
 				t.ok(err, 'the module should not exist')
-				modInterface.getModuleList(function(modules) {
+				mod.getModuleList(function(modules) {
 					t.ok(modules, 'it should give you back the modules')
 					t.ok(Array.isArray(modules), 'it should be an array')
 					t.equal(0, modules.length, 'it should have zero items')
@@ -145,7 +145,7 @@ test('getting a commit without required parameters', function(t) {
 
 test('getting a non existant commit', function(t) {
 	var commitObject = {
-		module: 'doesNotExist',
+		name: 'doesNotExist',
 		sha: 'fake'
 	}
 	modInterface().getModuleCommit(commitObject, function(err) {
@@ -202,37 +202,52 @@ test('adding a commit correctly returns appropriate values', function(t) {
 	})
 })
 
-// test('adding a module with a forward slash', function(t) {
-// 	modInterface().putModule({
-// 		name: 'my/module',
-// 		version: '0.0.0',
-// 		repository: {
-// 			type: 'git',
-// 			url: 'site.com/repo.git'
-// 		}
-// 	}, function(err, module) {
-// 		t.ok(err, 'module name may not contain a forward slash')
-// 		t.end()
-// 	})
-// })
+test('adding a commit should be persisted', function(t) {
+	var db = database()
+	var mod = new ModuleInterface(db)
+	mod.putModuleCommit({
+		name: 'module',
+		sha: 'abc123',
+		version: '0.0.0',
+		files: [ 'file1.ext', 'file2.ext' ]
+	}, function(err) {
+		t.notOk(err, 'should not throw an error')
+		mod.getModuleCommit({
+			name: 'module',
+			sha: 'abc123'
+		}, function(err, commit) {
+			t.notOk(err, 'commit should be found')
+			t.equal(commit.version, '0.0.0', 'should persist information about the commit')
+			t.end()
+		})
+	})
+})
 
-// test('adding a module correctly returns appropriate values', function(t) {
-// 	var inserted = {
-// 		name: 'module',
-// 		version: '0.0.0',
-// 		repository: {
-// 			type: 'git',
-// 			url: 'site.com/repo.git'
-// 		}
-// 	}
-// 	modInterface().putModule(inserted, function(err, module) {
-// 		t.notOk(err, 'module should be inserted')
-// 		t.ok(module.owned.first, 'it should have the first owned date added')
-// 		t.equal(module.module, inserted, 'the inserted module should be unchanged')
-// 		t.end()
-// 	})
-// })
-
+test('removing a commit should be persisted', function(t) {
+	var db = database()
+	var mod = new ModuleInterface(db)
+	mod.putModuleCommit({
+		name: 'module',
+		sha: 'abc123',
+		version: '0.0.0',
+		files: [ 'file1.ext', 'file2.ext' ]
+	}, function(err) {
+		t.notOk(err, 'should not throw an error')
+		mod.deleteModuleCommit({
+			name: 'module',
+			sha: 'abc123'
+		}, function(err) {
+			t.notOk(err, 'delete should not throw an error')
+				mod.getModuleCommit({
+					name: 'module',
+					sha: 'abc123'
+				}, function(err) {
+					t.ok(err, 'commit should not be found')
+					t.end()
+				})
+		})
+	})
+})
 
 
 
