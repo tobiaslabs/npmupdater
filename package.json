@@ -4,7 +4,7 @@
   "description": "A server thingy that monitors a user's modules and auto pushes them.",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "tape test-seneca/test-*.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,9 @@
     "tape": "~3.4.0",
     "uuidv4": "~0.3.0",
     "light-router": "~0.1.2"
+  },
+  "dependencies": {
+    "github": "~0.2.3",
+    "seneca": "~0.5.21"
   }
 }

@@ -1,8 +1,8 @@
 {
-	"name": "module",
-	"version": "0.0.0",
+	"name": "ftp-core",
+	"version": "0.0.2",
 	"repository": {
 		"type": "git",
-		"url": "site.com/repo.git"
+		"url": "git@github.com:sdmp/ftp-core.git"
 	}
 }

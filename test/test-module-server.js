@@ -1,36 +1,57 @@
 var http = require('http')
 var level = require('level-mem')
+var EventEmitter = require('events').EventEmitter
 
-var Routes = require('routes')
-var router = new Routes()
+var GetAndPushCommit = require('../lib/get-and-push-commit')
+var GetRecentCommits = require('../lib/get-recent-commits')
+var ModuleRequestResponder = require('../lib/module-request-responder')
+var authorization = require('../lib/authorization')
 
-var ModuleInterface = require('../lib/module-interface')
-var MagicUpdater = require('../lib/magic-updater')
-var ModuleRouter = require('../lib/module-router')
-var UpdateRouter = require('../lib/update-router')
+var emitter = new EventEmitter()
+emitter.on('log', eventLogger)
+emitter.on('commit:add', commitAdded)
+emitter.on('module:add', moduleAdded)
+
+var getAndPushCommit = new GetAndPushCommit(emitter)
+var getRecentCommits = new GetRecentCommits(emitter)
 
 var level = level('mod_server', {
 	keyEncoding: 'utf8',
 	valueEncoding: 'json'
 })
 
-var moduleInterface = new ModuleInterface(level)
-var magicUpdater = new MagicUpdater(undefined)
+var requestResponder = new ModuleRequestResponder({
+	emitter: emitter,
+	database: level,
+	authorization: authorization
+})
 
-var moduleRouter = new ModuleRouter(moduleInterface)
-var updateRouter = new UpdateRouter(magicUpdater)
+http.createServer(requestResponder).listen(1337)
 
-var allowedTokens = [
-	'abc123lolbutts'
-]
-
-function authorizeRequest(request, cb) {
-	var authToken = request.headers['authorization']
-	cb(allowedTokens.indexOf(authToken) < 0)
+function eventLogger(string, json) {
+	if (json) {
+		console.log(string, JSON.stringify(json))
+	} else {
+		console.log(string)
+	}
 }
 
-http.createServer(function (req, res) {
-	var path = url.parse(req.url).pathname;
-	var match = router.match(path);
-	match.fn(req, res, match);
-}).listen(1337)
+function commitAdded(commit) {
+	getAndPushCommit(commit, function(err) {
+		if (err) {
+			emitter.emit('log', 'Error adding commit: ' + commit.sha, err)
+		} else {
+			emitter.emit('log', 'Success updating module on npm.')
+		}
+	})
+}
+
+function moduleAdded(module) {
+	getRecentCommits(module, function(err, commits) {
+			if (err) {
+				emitter.emit('log', 'Error retreiving commits for module: ' + module.name, err)
+			} else {
+				emitter.emit('log', 'Success updating module on npm.')
+			}
+	})
+}
