@@ -1,6 +1,6 @@
 var test = require('tape')
 
-var getModules = require('../seneca/get-modules')
+var getModules = require('../routing/get-modules')
 var setup = require('./setup')
 
 test('getting an empty module list', function(t) {

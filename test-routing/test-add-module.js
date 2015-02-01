@@ -1,6 +1,6 @@
 var test = require('tape')
 
-var addModule = require('../seneca/add-module')
+var addModule = require('../routing/add-module')
 var setup = require('./setup')
 
 test('putting a module wrongly', function(t) {
@@ -18,12 +18,11 @@ test('adding a module correctly', function(t) {
 	var options = setup(addModule)
 	options.routing.client().act({
 		put: 'module',
+		token: 'abc123lolbutts',
 		name: 'my-mod',
 		version: '0.0.0',
-		repository: {
-			type: 'git',
-			url: 'site.com'
-		}
+		user: 'johndoe',
+		repo: 'myrepo'
 	}, function (err, data) {
 		t.notOk(err, 'there should not be an error')
 		options.database.get('my-mod', function(err, obj) {

@@ -1,11 +1,12 @@
 var test = require('tape')
 
-var removeCommit = require('../seneca/remove-commit')
+var removeCommit = require('../routing/remove-commit')
 var setup = require('./setup')
 
 test('removing a non-existant commit', function(t) {
 	setup(removeCommit).routing.client().act({
 		remove: 'commit',
+		token: 'abc123lolbutts',
 		module: 'my-module',
 		sha: 'cd92815bf6273acbaf834b9faed277c722068291'
 	}, function (err) {
@@ -26,6 +27,7 @@ test('removing an existing commit', function(t) {
 		t.notOk(err, 'adding commit should not throw an error')
 		options.routing.client().act({
 			remove: 'commit',
+			token: 'abc123lolbutts',
 			module: 'my-module',
 			sha: 'cd92815bf6273acbaf834b9faed277c722068291'
 		}, function (err) {

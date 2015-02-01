@@ -1,6 +1,6 @@
 var test = require('tape')
 
-var getCommit = require('../seneca/get-commit')
+var getCommit = require('../routing/get-commit')
 var setup = require('./setup')
 
 test('getting a commit wrongly', function(t) {

@@ -1,6 +1,6 @@
 var test = require('tape')
 
-var addCommit = require('../seneca/add-commit')
+var addCommit = require('../routing/add-commit')
 var setup = require('./setup')
 
 test('putting a commit wrongly', function(t) {
@@ -20,6 +20,7 @@ test('putting a commit correctly', function(t) {
 	var options  = setup(addCommit)
 	options.routing.client().act({
 		put: 'commit',
+		token: 'abc123lolbutts',
 		module: {
 			name: 'my-module',
 			version: '0.0.0'
