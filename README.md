@@ -27,4 +27,19 @@ and push it out to [npmjs.com](https://www.npmjs.com).
 
 That's it!
 
+## More things
+
+Hopefully this is pretty readable. It's about as simple as I could make it.
+
+If you want to use this yourself, it should be pretty easy to set it up as
+a cronjob or somesuch. I mean, that's essentially what I'm doing.
+
+## License
+
+Published and released under the [VOL](http://veryopenlicense.com).
+
+## Help me out?
+
+I totally take pull requests, and I like it when people file issues!
+
 <3

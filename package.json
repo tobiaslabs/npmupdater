@@ -1,0 +1,32 @@
+{
+  "name": "npmupdater",
+  "version": "0.0.1",
+  "description": "Grab all the modules from an npm user and update them from github.",
+  "main": "lib/update-user-modules.js",
+  "scripts": {
+    "test": "tape test/test-*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saibotsivad/npmupdater.git"
+  },
+  "keywords": [
+    "npm",
+    "github"
+  ],
+  "author": "saibotsivad",
+  "license": "VOL",
+  "bugs": {
+    "url": "https://github.com/saibotsivad/npmupdater/issues"
+  },
+  "devDependencies": {
+    "tape": "~3.4.0"
+  },
+  "dependencies": {
+    "github": "~0.2.3",
+    "promise": "~6.1.0",
+    "npm": "~2.4.1",
+    "cheerio": "~0.18.0",
+    "semver": "~4.2.0"
+  }
+}
