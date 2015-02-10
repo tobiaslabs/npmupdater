@@ -2,37 +2,32 @@
 
 ![logo thingy](logo.png)
 
-Setup [npmupdater](https://www.npmjs.com/~npmupdater) as an owner of one of
-your [npm](https://www.npmjs.com/) modules and it'll update when you bump
-the package.json version numbers in your repo.
+This is the main module used by the [https://www.npmjs.org/~npmupdater](npmupdater) user.
+(The logs of the public npmupdater are available on the [npmupdater website](http://npmupdater.com).)
 
-*(Currently you have to use a public [Github](https://github.com) repo as the code host.)*
+## install
 
-## How to setup
+Do it the normal way way, if you want to use it in another program/module:
 
-Inside your module folder, where you'd usually run `npm publish`,
-just run this:
+	npm install npmupdater
 
-	npm owner add npmupdater
+Or if you want to run it from the command line, you can install it like (probably need to `sudo`):
 
-*(Please be aware of [the privileges](https://docs.npmjs.com/cli/owner) that this gives to the `npmupdater` user.)*
+	npm install npmupdater -g
 
-## How to use
+## using
 
-Once you've merged in your sweet code on Github, bump the version
-number in `packages.json`.
+If you use it programatically, you'll call it like (this uses the user credentials of the npm user setup on the command line):
 
-**npmupdater** will grab the latest from the [default branch](https://help.github.com/articles/setting-the-default-branch/)
-and push it out to [npmjs.com](https://www.npmjs.com).
+	var updater = require('npmupdater')
 
-That's it!
+	updater('my-user-name', function(logs) {
+		console.log(logs)
+	})
 
-## More things
+If you use it on the command line, once you install with the `-g` flag, you can just do:
 
-Hopefully this is pretty readable. It's about as simple as I could make it.
-
-If you want to use this yourself, it should be pretty easy to set it up as
-a cronjob or somesuch. I mean, that's essentially what I'm doing.
+	npmupdater my-user-name
 
 ## License
 
