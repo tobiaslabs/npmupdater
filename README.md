@@ -11,7 +11,7 @@ Do it the normal way way, if you want to use it in another program/module:
 
 	npm install npmupdater
 
-Or if you want to run it from the command line, you can install it like:
+Or if you want to run it from the command line, you can install it like (probably need to `sudo`):
 
 	npm install npmupdater -g
 
