@@ -1,6 +1,6 @@
 {
   "name": "npmupdater",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Grab all the modules from an npm user and update them from github.",
   "main": "lib/update-user-modules.js",
   "scripts": {
