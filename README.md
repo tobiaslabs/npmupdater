@@ -2,7 +2,7 @@
 
 ![logo thingy](logo.png)
 
-This is the main module used by the [https://www.npmjs.org/~npmupdater](npmupdater) user.
+This is the main module used by the [npmupdater](https://www.npmjs.org/~npmupdater) user.
 (The logs of the public npmupdater are available on the [npmupdater website](http://npmupdater.com).)
 
 ## install
