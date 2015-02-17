@@ -1,13 +1,10 @@
 {
   "name": "npmupdater",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Update a module on npm if the Github version is greater.",
-  "main": "lib/update-user-modules.js",
+  "main": "lib/npmupdater.js",
   "scripts": {
     "test": "tape test/test-*.js"
-  },
-  "bin": {
-    "npmupdater": "lib/cli.js"
   },
   "repository": {
     "type": "git",
