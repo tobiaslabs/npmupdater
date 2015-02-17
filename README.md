@@ -2,39 +2,32 @@
 
 ![logo thingy](logo.png)
 
-This is the main module used by the [npmupdater](https://www.npmjs.org/~npmupdater) user.
-(The logs of the public npmupdater are available on the [npmupdater website](http://npmupdater.com).)
+This is the core module used by the [npmupdater](http://npmupdater.com) site. To run from the
+commend line, use the [cli version](https://www.npmjs.org/package/npmupdater-cli).
 
 ## install
 
-Do it the normal way way, if you want to use it in another program/module:
+Do it the normal way way:
 
 	npm install npmupdater
 
-Or if you want to run it from the command line, you can install it like (probably need to `sudo`):
-
-	npm install npmupdater -g
-
 ## using
 
-If you use it programatically, you'll call it like (this uses the user credentials of the npm user setup on the command line):
+This module uses the credentials of the npm user logged in on the command line.
+
+Use it like this:
 
 	var updater = require('npmupdater')
-
-	updater('my-user-name', function(logs) {
-		console.log(logs)
+	updater('my-module-name', function(err, result) {
+		// handle err and result
 	})
 
-If you use it on the command line, once you install with the `-g` flag, you can just do:
-
-	npmupdater my-user-name
+The `result` is an object with the property `push` that is either `true` (if the
+module was pushed to npm) or `false` (if it's not been pushed), and the property
+`version`, which is the version on npm or github, whichever is greater.
 
 ## License
 
-Published and released under the [VOL](http://veryopenlicense.com).
-
-## Help me out?
-
-I totally take pull requests, and I like it when people file issues!
+All documents and code of this repo are published and released under the [VOL](http://veryopenlicense.com).
 
 <3
