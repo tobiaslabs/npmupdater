@@ -1,7 +1,7 @@
 {
   "name": "npmupdater",
-  "version": "0.0.5",
-  "description": "Grab all the modules from an npm user and update them from github.",
+  "version": "0.0.7",
+  "description": "Update a module on npm if the Github version is greater.",
   "main": "lib/update-user-modules.js",
   "scripts": {
     "test": "tape test/test-*.js"
@@ -23,15 +23,11 @@
     "url": "https://github.com/tobiaslabs/npmupdater/issues"
   },
   "devDependencies": {
-    "tape": "~3.4.0"
+    "tape": "~3.5.0"
   },
   "dependencies": {
-    "github": "~0.2.3",
-    "promise": "~6.1.0",
     "npm": "~2.4.1",
-    "cheerio": "~0.18.0",
     "semver": "~4.2.2",
-    "npm-owned-modules": "~0.0.7",
     "github-module-version": "~0.0.7"
   }
 }
