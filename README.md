@@ -3,7 +3,7 @@
 ![logo thingy](logo.png)
 
 This is the core module used by the [npmupdater](http://npmupdater.com) site. To run from the
-commend line, use the [cli version](https://www.npmjs.org/package/npmupdater-cli).
+command line, use the [cli version](https://www.npmjs.org/package/npmupdater-cli).
 
 ## install
 
@@ -26,7 +26,7 @@ The `result` is an object with the property `push` that is either `true` (if the
 module was pushed to npm) or `false` (if it's not been pushed), and the property
 `version`, which is the version on npm or github, whichever is greater.
 
-## License
+## license
 
 All documents and code of this repo are published and released under the [VOL](http://veryopenlicense.com).
 
