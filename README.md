@@ -1,4 +1,6 @@
-# npmupdater
+# npmupdater [![Build Status](https://travis-ci.org/tobiaslabs/npmupdater.svg?branch=master)](https://travis-ci.org/tobiaslabs/npmupdater)
+
+[![NPM](https://nodei.co/npm/npmupdater.png)](https://nodei.co/npm/npmupdater/)
 
 ![logo thingy](logo.png)
 
