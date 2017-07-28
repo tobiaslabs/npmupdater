@@ -1,5 +1,7 @@
 # npmupdater [![Build Status](https://travis-ci.org/tobiaslabs/npmupdater.svg?branch=master)](https://travis-ci.org/tobiaslabs/npmupdater)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/saibotsivad/npmupdater.svg)](https://greenkeeper.io/)
+
 ![logo thingy](logo.png)
 
 This is the core module used by the [npmupdater cli](https://www.npmjs.org/package/npmupdater-cli).
