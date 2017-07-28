@@ -20,11 +20,11 @@
     "url": "https://github.com/saibotsivad/npmupdater/issues"
   },
   "devDependencies": {
-    "tape": "~3.5.0"
+    "tape": "~4.7.0"
   },
   "dependencies": {
-    "npm": "~2.4.1",
-    "semver": "~4.2.2",
+    "npm": "~5.3.0",
+    "semver": "~5.4.1",
     "github-module-version": "~0.0.7"
   }
 }
